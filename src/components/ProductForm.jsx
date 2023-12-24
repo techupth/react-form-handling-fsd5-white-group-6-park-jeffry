@@ -1,6 +1,22 @@
+import { useState } from "react";
+
 function ProductForm() {
+  const [name, setname] = useState("");
+  const [image, setImage] = useState("");
+  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState("");
+  const handleSubmit = (event) => {
+    const object = {
+      name: name,
+      price: price,
+      image: image,
+      description: description,
+    };
+    let json = JSON.stringify(object);
+    alert(json);
+  };
   return (
-    <form className="post-form">
+    <form className="post-form" onSubmit={handleSubmit}>
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -10,7 +26,10 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setname(event.target.value);
+            }}
+            value={name}
           />
         </label>
       </div>
@@ -22,7 +41,10 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setImage(event.target.value);
+            }}
+            value={image}
           />
         </label>
       </div>
@@ -34,7 +56,10 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setPrice(event.target.value);
+            }}
+            value={price}
           />
         </label>
       </div>
@@ -46,7 +71,10 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setDescription(event.target.value);
+            }}
+            value={description}
             rows={4}
             cols={30}
           />
